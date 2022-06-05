@@ -1,11 +1,19 @@
-import { applyMiddleware } from "redux";
-import { configureStore } from "@testing-library/react";
-import { composeWithDevTools } from "redux-devtools-extension"
+import { configureStore } from "@reduxjs/toolkit";
+import reducer from "./modules/reducer";
+import createSagaMiddleware from "@redux-saga/core";
+import rootSaga from "./modules/rootSaga";
 
 const create = () => {
-  const store = createStore(reducer, composeWithDevTools(applyMiddleware()))
+  const sagaMiddleware = createSagaMiddleware();
+
+  const store = configureStore({
+    // composeWithDevtools, thunk automatically activate
+    reducer,
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(sagaMiddleware)
+    })
+    sagaMiddleware.run(rootSaga)
 
   return store;
 };
 
-export default
+export default create;
