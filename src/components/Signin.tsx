@@ -1,12 +1,13 @@
 import { Button, Col, Input, Row } from "antd";
+import styles from './Signin.module.css'
 
 export default function Signin() {
-  return <Row align="middle">
+  return <Row align="middle" className={styles.signin_row}>
     <Col span={24}>
-      <Row>
+      <Row className={styles.signin_contents}>
         <Col span={12}></Col>
         <Col span={12}>
-          <div>My Books</div>
+          <div className={styles.signin_title}>My Books</div>
           <div>Please Note Your Opinion</div>
           <div />
           <div>
