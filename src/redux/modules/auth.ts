@@ -1,4 +1,4 @@
-import { createActions, handleActions } from "redux-actions";
+import { Action, createActions, handleActions } from "redux-actions";
 import { call, put, takeEvery } from "redux-saga/effects";
 import { LoginReqType } from "../../types";
 import UserService from "../../services/UserService";
@@ -62,13 +62,13 @@ function* loginSaga(action: Action<LoginReqType>) {
     // localstorage
     yield put(success(token));
     // push
-} catch (error) {
-  yield put(fail(new Error(error ?.response ?. data ?.error || 'UNKNOWN_ERROR')))
+} catch (error: any) {
+  yield put(fail(new Error(error?.response?.data?.error || 'UNKNOWN_ERROR')))
 }
 function* logoutSaga() {
 
 }
-
+}
 export function* authSaga() {
   yield takeEvery(`${prefix}/LOGIN`, loginSaga);
   yield takeEvery(`${prefix}/LOGOUT`, logoutSaga);
