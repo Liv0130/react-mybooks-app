@@ -65,9 +65,9 @@ function* loginSaga(action: Action<LoginReqType>) {
 } catch (error: any) {
   yield put(fail(new Error(error?.response?.data?.error || 'UNKNOWN_ERROR')))
 }
+}
 function* logoutSaga() {
 
-}
 }
 export function* authSaga() {
   yield takeEvery(`${prefix}/LOGIN`, loginSaga);
