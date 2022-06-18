@@ -8,19 +8,22 @@ import Edit from './pages/Edit';
 import NotFound from './pages/NotFound';
 import { ErrorBoundary } from 'react-error-boundary';
 import Error from './pages/Error';
-
+import { ConnectedRouter } from "connected-react-router";
+import history from './history';
 function App() {
   return (
     <div>
       <ErrorBoundary FallbackComponent={Error}>
-      <Routes>
+      <ConnectedRouter history={history}>
+        <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/signin' element={<Signin />} />
         <Route path='/add' element={<Add />} />
         <Route path='/book/:id' element={<Detail />} />
         <Route path='/edit/:id' element={<Edit />} />
         <Route element={<NotFound />} />
-      </Routes>
+        </Routes>
+      </ConnectedRouter>
      </ErrorBoundary>
     </div>
   )
